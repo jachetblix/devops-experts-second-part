@@ -11,6 +11,12 @@ pipeline {
                     sh 'pip3 install --user -r requirements.txt'
                 }
             }
+
+            stage('Run Database image from docker and db_create.sh script which will create database') {
+                steps {
+                    sh 'docker-compose up -d'
+                }
+            }
              stage('Run rest_app') {
                 steps {
                     script {

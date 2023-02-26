@@ -2,9 +2,21 @@ from flask import jsonify, request
 from pypika import Query, Table, Field
 from db_connector import DBConnector
 from datetime import datetime
+import time
+
+
 
 users_table = Table('users')
-connector = DBConnector('127.0.0.1', 'root', '12345678', 'database_users')
+is_connected = False
+while not is_connected:
+    try:
+        connector = DBConnector('localhost', 'root', '12345678', 'devops_db')
+        is_connected = True
+        print('connected')
+    except Exception as e :
+        print(e)
+        time.sleep(1)
+        print('not connected')
 
 
 def get_user(user_id):

@@ -12,6 +12,7 @@ class DBConnector:
         if not DBConnector.connection:
             DBConnector.connection = self.connect()
 
+
     def connect(self):
         connection = pymysql.connect(
             host=self.host,

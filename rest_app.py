@@ -1,7 +1,7 @@
 from flask import Flask, request, jsonify
 from db_connector import DBConnector
 from pypika import Query, Table, Field
-from datetime import datetime
+from time import sleep
 from model import users
 import os
 import signal
