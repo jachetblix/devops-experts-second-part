@@ -3,6 +3,7 @@ from pypika import Query, Table, Field
 from db_connector import DBConnector
 from datetime import datetime
 import time
+from config import config
 
 
 
@@ -10,7 +11,12 @@ users_table = Table('users')
 is_connected = False
 while not is_connected:
     try:
-        connector = DBConnector('localhost', 'root', '12345678', 'devops_db')
+        connector = DBConnector(
+            host=config.get('MYSQL_HOST'),
+            user=config.get('MYSQL_USER'),
+            password=config.get('MYSQL_PASSWORD'),
+            database=config.get('MYSQL_DATABASE')
+        )
         is_connected = True
         print('connected')
     except Exception as e :
